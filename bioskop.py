@@ -1,28 +1,58 @@
-# Data film
-film_list = [
-    {"nama": "Spider-Man", "harga": 45000},
-    {"nama": "Avengers", "harga": 50000},
-    {"nama": "Toy Story", "harga": 40000}
-]
+def menu_utama():
+    while True:
+        print("\n=== MENU UTAMA ===")
+        print("1. Daftar Film")
+        print("2. Pembelian Tiket")
+        print("3. Quit")
+        pilih = input("Pilih menu: ")
 
-# Fungsi menampilkan menu
-def tampilkan_menu():
-    print("\n=== Menu Bioskop ===")
-    for i in range(len(film_list)):
-        print(str(i+1) + ". " + film_list[i]["nama"])
-    print("4. Selesai")
+        if pilih == '1':
+            daftar_film()
+        elif pilih == '2':
+            pembelian_tiket()
+        elif pilih == '3':
+            print("Terima kasih!")
+            break
+        else:
+            print("Pilihan tidak valid.")
 
-# Program utama
-while True:
-    tampilkan_menu()
-    pilihan = input("Pilih film (1-4): ")
+def daftar_film():
+    print("\n=== DAFTAR FILM ===")
+    print("1. Avengers")
+    print("2. Fast and Furious")
+    print("3. Transformers")
+    input("Tekan Enter untuk kembali...")
 
-    if pilihan == "1" or pilihan == "2" or pilihan == "3":
-        index = int(pilihan) - 1
-        print("Nama film: " + film_list[index]["nama"])
-        print("Harga tiket: Rp" + str(film_list[index]["harga"]))
-    elif pilihan == "4":
-        print("Program selesai. Terima kasih!")
-        break
+def pembelian_tiket():
+    print("\n=== PEMBELIAN TIKET ===")
+    nama = input("Nama Anda: ")
+    print("Pilih film:")
+    print("1. Avengers")
+    print("2. Fast and Furious")
+    print("3. Transformers")
+    film = input("Pilihan (1-3): ")
+
+    if film == '1':
+        film_nama = "Avengers"
+    elif film == '2':
+        film_nama = "Fast and Furious"
+    elif film == '3':
+        film_nama = "Transformers"
     else:
-        print("Pilihan tidak valid. Silakan coba lagi.")
+        print("Pilihan film tidak valid.")
+        return
+
+    jumlah = input("Jumlah tiket: ")
+    if not jumlah.isdigit():
+        print("Jumlah tiket harus angka.")
+        return
+
+    jumlah = int(jumlah)
+    total = jumlah * 25000
+
+    print("\nNama:", nama)
+    print("Film:", film_nama)
+    print("Jumlah tiket:", jumlah)
+    print("Total harga: Rp" + str(total).replace(",", "."))
+
+menu_utama()
